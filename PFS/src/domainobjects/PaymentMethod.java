@@ -1,3 +1,5 @@
+package domainobjects;
+
 public enum PaymentMethod
 {
 	CASH,

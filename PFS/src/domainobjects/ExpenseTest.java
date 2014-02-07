@@ -1,5 +1,4 @@
-import java.util.Date;
-import java.util.Set;
+package domainobjects;
 
 public class ExpenseTest
 {

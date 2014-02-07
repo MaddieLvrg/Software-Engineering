@@ -1,3 +1,5 @@
+package domainobjects;
+
 import java.util.Arrays;
 
 public class IDSet
@@ -40,7 +42,7 @@ public class IDSet
 
 			final int middleValue = values[middle];
 
-			if(middle == inValue)
+			if(middleValue == inValue)
 			{
 				return true;
 			}

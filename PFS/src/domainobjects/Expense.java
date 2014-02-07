@@ -14,7 +14,7 @@ public class Expense
 		labels = inLabels;
 	}
 
-	public Date getData()
+	public Date getDate()
 	{
 		return date;
 	}

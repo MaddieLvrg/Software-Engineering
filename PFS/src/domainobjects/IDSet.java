@@ -18,7 +18,7 @@ public class IDSet
 		assert inSet != null;
 
 		int[] newSet = union(values, inSet.values);
-		return CreateFromArray(newSet);
+		return createFromArray(newSet);
 	}
 
 	public IDSet intersect(IDSet inSet)
@@ -26,7 +26,7 @@ public class IDSet
 		assert inSet != null;
 
 		int[] newSet = intersect(values, inSet.values);
-		return CreateFromArray(newSet);
+		return createFromArray(newSet);
 	}
 
 	public boolean contains(int inValue)
@@ -46,7 +46,7 @@ public class IDSet
 			{
 				return true;
 			}
-			else if(middle < inValue)
+			else if(middleValue < inValue)
 			{
 				start = middle;
 			}
@@ -114,7 +114,7 @@ public class IDSet
 
 	private final int[] values;
 
-	public static IDSet CreateFromArray(int[] inValues)
+	public static IDSet createFromArray(int[] inValues)
 	{
 		assert inValues != null;
 

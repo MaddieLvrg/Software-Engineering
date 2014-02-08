@@ -1,6 +1,10 @@
 package systemtests;
 
+import java.util.Date;
+
+import domainobjects.Expense;
 import domainobjects.IDSet;
+import domainobjects.PaymentMethod;
 import system.ExpenseSystem;
 import junit.framework.TestCase;
 
@@ -44,5 +48,21 @@ public class ExpenseSystemTest extends TestCase
 		IDSet expenseIDs = current.getExpenseIDs();
 		
 		assertFalse("System should not have a deleted expense", expenseIDs.contains(id));
+	}
+	
+	public void testUpdateExpense()
+	{
+		ExpenseSystem current = ExpenseSystem.getCurrent();
+		
+		int newID = current.newExpense();
+		
+		int setData[] = {1, 2, 3};
+		Expense expense = new Expense(new Date(), 100, PaymentMethod.CASH, "Something to eat", 0, IDSet.createFromArray(setData));
+		
+		current.updateExpense(newID, expense);
+		
+		Expense returnedExpense = current.getExpense(newID);
+		
+		assertEquals("The returned expense is not the same as the updated value",expense, returnedExpense);
 	}
 }

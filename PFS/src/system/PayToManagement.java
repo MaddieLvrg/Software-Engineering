@@ -6,14 +6,16 @@ import dataAccessLayer.*;
 import domainobjects.IDSet;
 import domainobjects.PayTo;
 
-public class PayToManagement
+public class PayToManagement implements IIDReader, IDataReader, IDataModifer
 {
 	public PayToManagement(IDatabase inDatabase)
 	{
+		assert inDatabase != null : "Must provide non-null database";
+
 		database = inDatabase;
 	}
 	
-	public IDSet getAllPayToIDs()
+	public IDSet getAllIDs()
 	{
 		final Vector<Integer> ids = database.getAllPayToIDs();
 		final int[] setData = new int[ids.size()];
@@ -28,20 +30,35 @@ public class PayToManagement
 		return output;
 	}
 	
-	public PayTo getPayToByID(int inId)
+	public Object getByID(int inId)
 	{
+		assert inId >= 0 : "Invalid id";
+
 		return database.getPayToByID(inId);
 	}
 	
-	public int registerPayTo(PayTo inNewPayTo)
+	public int new()
 	{
-		return database.addPayTo(inNewPayTo);
+		PayTo newPayTo = new PayTo("Somewhere New");
+
+		return database.addPayTo(newPayTo);
 	}
 	
-	public boolean updatePayTo(int inId, PayTo inPayToToUpdate)
+	public boolean update(int inId, Object inNewValue)
 	{
-		return database.updatePayTo(inId, inPayToToUpdate);
+		assert inId >= 0 : "Invalid ID";
+		assert inNewValue != null : "Cannot update with null value";
+		assert inNewValue instanceof PayTo : "Can only update with PayTo objects";
+
+		return database.updatePayTo(inId, inNewValue);
 	}
 	
+	public boolean delete(int inID)
+	{
+		assert false : "Cannot delete a payto location, do not call this function";
+
+		return false;
+	}
+
 	private IDatabase database;
 }

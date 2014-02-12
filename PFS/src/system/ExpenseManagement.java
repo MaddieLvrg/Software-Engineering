@@ -9,14 +9,16 @@ import domainobjects.Expense;
 import domainobjects.IDSet;
 import domainobjects.PaymentMethod;
 
-public class ExpenseManagement
+public class ExpenseManagement implements IIDReader, IDataReader, IDataModifer
 {
 	public ExpenseManagement(IDatabase inDatabase)
 	{
+		assert inDatabase != null : "Must provide non-null database";
+
 		database = inDatabase;
 	}
 	
-	public IDSet getAllExpenseIDs()
+	public IDSet getAllIDs()
 	{
 		final Vector<Integer> ids = database.getAllExpenseIDs();
 		final int[] setData = new int[ids.size()];
@@ -31,31 +33,37 @@ public class ExpenseManagement
 		return output;
 	}
 
-	public Expense getExpenseByID(int inId)
+	public Object getDataByID(int inID)
 	{
+		assert inID >= 0 : "Invalid ID";
+
 		return database.getExpenseByID(inId);
 	}
 
-	public boolean updateExpense(int inId, Expense inNewValue)
+	public boolean update(int inId, Object inNewValue)
 	{
+		assert inID >= 0 : "Invalid ID";
+		assert inNewValue != null : "Cannot update expense with null value";
+
+		assert inNewValue instanceof Expense : "Can only use expenses in expense system";
+
 		return database.updateExpense(inId, inNewValue);
 	}
 
-	public boolean deleteExpense(int inId)
+	public boolean delete(int inId)
 	{
+		assert inID >= 0 : "Invalid ID";
+
 		return database.deleteExpense(inId);
 	}
 
-	public int newExpense()
+	public int new()
 	{
-		int newId = 0;
 		final int[] emptySetData = new int[0];
 		final IDSet emptySet = IDSet.createFromArray(emptySetData);
 		Expense newExpense = new Expense(new Date(), 0, PaymentMethod.CASH, "", -1, emptySet);
 		
-		newId = database.addExpense(newExpense);
-		
-		return newId;
+		return database.addExpense(newExpense);
 	}
 	
 	private IDatabase database;

@@ -43,13 +43,5 @@ public class PayToManagement
 		return database.updatePayTo(inId, inPayToToUpdate);
 	}
 	
-	public static PayToManagement getCurrent()
-	{
-		assert current != null : "Returning a null payTo management system";
-
-		return current;
-	}
-	
 	private IDatabase database;
-	private static PayToManagement current = new PayToManagement(new StubDatabase());
 }

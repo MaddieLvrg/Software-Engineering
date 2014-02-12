@@ -57,14 +57,6 @@ public class ExpenseManagement
 		
 		return newId;
 	}
-
-	public static ExpenseManagement getCurrent()
-	{
-		assert current != null : "Returning a null current value";
-
-		return current;
-	}
 	
 	private IDatabase database;
-	private static ExpenseManagement current = new ExpenseManagement(new StubDatabase());
 }

@@ -42,14 +42,6 @@ public class LabelManagement
 	{
 		return database.updateLabel(inId, inLabelToUpdate);
 	}
-	
-	public static LabelManagement getCurrent()
-	{
-		assert current != null : "Returning a null label management system";
-
-		return current;
-	}
-	
+		
 	private IDatabase database;
-	private static LabelManagement current = new LabelManagement(new StubDatabase());
 }

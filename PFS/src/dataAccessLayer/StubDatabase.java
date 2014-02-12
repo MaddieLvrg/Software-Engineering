@@ -49,9 +49,11 @@ public class StubDatabase implements IDatabase
 		return expense;
 	}
 	
-	public Vector<Integer> getAllExpenseIDs()
+	public int[] getAllExpenseIDs()
 	{
-		return expenseIds;
+		int[] arrayIDs = new int[expenseIds.size()];
+		expenseIds.copyInto(arrayIDs);
+		return arrayIDs;
 	}
 	
 	public int addExpense(Expense inNewValue)
@@ -107,9 +109,11 @@ public class StubDatabase implements IDatabase
 		return label;
 	}
 	
-	public Vector<Integer> getAllLabelIDs()
+	public int[] getAllLabelIDs()
 	{
-		return labelIds;
+		int[] arrayIDs = new int[labelIds.size()];
+		labelIds.copyInto(arrayIDs);
+		return arrayIDs;
 	}
 	
 	public int addLabel(Label inNewValue)
@@ -150,9 +154,11 @@ public class StubDatabase implements IDatabase
 		return payTo;
 	}
 	
-	public Vector<Integer> getAllPayToIDs()
+	public int[] getAllPayToIDs()
 	{
-		return payToIds;
+		int[] arrayIDs = new int[payToIds.size()];
+		payToIds.copyInto(arrayIDs);
+		return arrayIDs;
 	}
 	
 	public int addPayTo(PayTo inNewValue)

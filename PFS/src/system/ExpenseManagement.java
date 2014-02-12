@@ -20,14 +20,9 @@ public class ExpenseManagement implements IIDReader, IDataReader, IDataModifer
 	
 	public IDSet getAllIDs()
 	{
-		final Vector<Integer> ids = database.getAllExpenseIDs();
-		final int[] setData = new int[ids.size()];
-		
-		for(int i = 0; i < setData.length; i++)
-		{
-			setData[i] = ids.get(i).intValue();
-		}
-		
+		final int[] setData = database.getAllExpenseIDs();
+		assert setData != null : "Database returned null array";
+	
 		final IDSet output = IDSet.createFromArray(setData);
 		
 		return output;

@@ -17,14 +17,9 @@ public class PayToManagement implements IIDReader, IDataReader, IDataModifer
 	
 	public IDSet getAllIDs()
 	{
-		final Vector<Integer> ids = database.getAllPayToIDs();
-		final int[] setData = new int[ids.size()];
+		final int[] setData = database.getAllPayToIDs();
+		assert setData != null : "Database returned null array";
 		
-		for(int i = 0; i < setData.length; i++)
-		{
-			setData[i] = ids.get(i).intValue();
-		}
-
 		final IDSet output = IDSet.createFromArray(setData);
 		
 		return output;

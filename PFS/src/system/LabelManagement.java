@@ -17,13 +17,8 @@ public class LabelManagement implements IIDReader, IDataReader, IDataModifer
 	
 	public IDSet getAllIDs()
 	{
-		final Vector<Integer> ids = database.getAllLabelIDs();
-		final int[] setData = new int[ids.size()];
-		
-		for(int i = 0; i < setData.length; i++)
-		{
-			setData[i] = ids.get(i).intValue();
-		}
+		final int[] setData = databaes.getAllLabelIDs();
+		assert setData != null : "Database returned null array";
 
 		final IDSet output = IDSet.createFromArray(setData);
 		
